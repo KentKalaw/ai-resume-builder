@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       temperature: 0.7,
     });
 
-    // Cohere SDK already returns JSON-like object (no need for response.json())
+
     const text = response.generations[0].text;
 
     return NextResponse.json({ result: text });
