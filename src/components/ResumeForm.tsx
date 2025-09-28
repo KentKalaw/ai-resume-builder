@@ -24,7 +24,7 @@ export default function ResumeForm() {
     <div className="max-w-lg mx-auto p-6">
       <form onSubmit={handleSubmit} className="space-y-4">
         <textarea
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded text-black"
           rows={6}
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -39,7 +39,7 @@ export default function ResumeForm() {
       </form>
 
       {output && (
-        <div className="mt-6 p-4 border rounded bg-gray-50 whitespace-pre-line">
+        <div className="mt-6 p-4 border rounded bg-gray-50 whitespace-pre-line text-black">
           {output}
         </div>
       )}
