@@ -9,15 +9,13 @@ export async function POST(req: Request) {
   try {
     const { input } = await req.json();
 
-    const response = await cohere.generate({
-      model: "command-r",
-      prompt: `You are a professional resume writer. Rewrite and polish this work experience:\n\n${input}`,
-      maxTokens: 300,
-      temperature: 0.7,
+    const response = await cohere.chat({
+      model: "command-r-plus",
+      message: `You are a professional resume writer. Rewrite and polish this work experience:\n\n${input}`,
     });
 
 
-    const text = response.generations[0].text;
+    const text = response.text;
 
     return NextResponse.json({ result: text });
   } catch (err) {
