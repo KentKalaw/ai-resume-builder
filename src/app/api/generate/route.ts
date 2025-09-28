@@ -1,23 +1,24 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import { CohereClient } from "cohere-ai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+const cohere = new CohereClient({
+  token: process.env.COHERE_API_KEY as string,
 });
 
 export async function POST(req: Request) {
   try {
     const { input } = await req.json();
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        { role: "system", content: "You are a professional resume writer." },
-        { role: "user", content: input },
-      ],
+    const response = await cohere.generate({
+      model: "command-r",
+      prompt: `You are a professional resume writer. Rewrite and polish this work experience:\n\n${input}`,
+      maxTokens: 300,
+      temperature: 0.7,
     });
 
-    const text = completion.choices[0].message?.content;
+    // Cohere SDK already returns JSON-like object (no need for response.json())
+    const text = response.generations[0].text;
+
     return NextResponse.json({ result: text });
   } catch (err) {
     console.error(err);
