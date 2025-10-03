@@ -47,7 +47,7 @@ export default function ResumeForm() {
               Created by: Kent Francis E. Kalaw
             </p>
             <p className="text-sm text-muted-foreground text-center">
-              Transform your work experience into polished resume text
+              Transform your work experience/skills into polished resume text
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
