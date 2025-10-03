@@ -11,7 +11,7 @@ export async function POST(req: Request) {
 
     const response = await cohere.chat({
       model: "command-a-03-2025",
-      message: `You are a professional resume writer. Rewrite and polish this work experience:\n\n${input}`,
+      message: `You are a professional resume writer. Rewrite and polish the work experience and or skills that will be given. Return **only** the rewritten version, with no explanations or extra commentary:\n\n${input}`,
     });
 
 
